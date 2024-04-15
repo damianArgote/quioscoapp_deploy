@@ -13,6 +13,12 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      transitionDuration: {
+        'DEFAULT': '300ms', // Duración por defecto
+        '0': '0ms', // Duración para transiciones rápidas
+        '200': '200ms', // Duración para transiciones medianas
+        '500': '500ms', // Duración para transiciones lentas
+      }
     },
   },
   plugins: [],

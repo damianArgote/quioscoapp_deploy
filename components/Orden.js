@@ -26,7 +26,7 @@ const Orden = ({orden}) => {
 
         <div>
             {pedido.map(plato => (
-                <div key={plato.id} className="py-3 flex border-b last-of-type:border-0 items-center">
+                <div key={plato.id} className="py-3 flex flex-col md:flex-row gap-4 border-b last-of-type:border-0 items-center">
                     <div className="w-32">
                         <Image
                             width={400}

@@ -17,7 +17,7 @@ const ModalProducto = () => {
 
     
   return (
-    <div className="md:flex gap-10">
+    <div className="flex gap-10 flex-col-reverse md:flex-row">
         <div className="md:w-1/3">
             <Image
                 width={300}
@@ -27,7 +27,7 @@ const ModalProducto = () => {
             />
         </div>
 
-        <div className="md:w-2/3">
+        <div className="md:w-2/3 sm:mt-14">
             <div className="flex justify-end">
                 <button
                 onClick={handleChangeModal}
@@ -48,11 +48,11 @@ const ModalProducto = () => {
                 </button>
             </div>
             <h1 className="text-3xl font-bold mt-5">{producto.nombre}</h1>
-            <p className="mt-5 font-black text-5xl text-amber-500">
+            <p className="mt-5 font-black text-5xl text-amber-500 text-center md:text-left">
                 {formatearDinero(producto.precio)}
             </p>
 
-            <div className='flex gap-4 mt-5'>
+            <div className='flex gap-4 mt-5 justify-center md:justify-start'>
                 <button
                 type='button'
                 onClick={() =>{
@@ -98,7 +98,7 @@ const ModalProducto = () => {
 
             <button
             type='button'
-            className='bg-indigo-600 hover:bg-indigo-800 mt-5 text-white uppercase rounded px-5 py-2 font-bold'
+            className='bg-indigo-600 hover:bg-indigo-800 mt-5 text-white uppercase rounded px-5 py-2 font-bold w-full md:w-auto'
             onClick={() => handleAgregarPedido({...producto,cantidad})}
             >
                 {edicion ? 'Guardar Cambios' : 'Añadir al Pedido'}

@@ -2,7 +2,7 @@ import {useState,useEffect,createContext} from 'react';
 import {useRouter} from 'next/router'
 import {toast} from 'react-toastify'
 import axios from 'axios';
-import {formatearDinero} from '../helpers'
+
 
 const QuioscoContext = createContext();
 
@@ -20,6 +20,8 @@ const QuioscoProvider = ({children}) =>{
     
     const[nombre,setNombre] = useState('')
     const[total,setTotal] = useState(0)
+
+    const [isNavVisible, setIsNavVisible] = useState(true);
 
 
     const obtenerCategorias = async () =>{
@@ -45,7 +47,8 @@ const QuioscoProvider = ({children}) =>{
     },[pedido])
     const handleClickCategoria = id =>{
         const categoria = categorias.filter( cat => cat.id === id);
-       setCategoriaActual(categoria[0]); 
+       setCategoriaActual(categoria[0]);
+       setIsNavVisible(!isNavVisible);
        router.push('/')
     }
 
@@ -128,7 +131,9 @@ const QuioscoProvider = ({children}) =>{
             handleEliminarProducto,
             setNombre,
             colocarOrden,
-            total
+            total,
+            isNavVisible,
+            setIsNavVisible
         }}
         >
             {children}
