@@ -7,21 +7,19 @@ import axios from 'axios';
 const QuioscoContext = createContext();
 
 const QuioscoProvider = ({children}) =>{
+
     const router = useRouter();
+    /* useState */
     const[categorias,setCategorias] = useState([])
-
     const[categoriaActual,setCategoriaActual] = useState({});
-
     const[producto,setProducto] = useState({})
-
     const[modal,setModal] = useState(false)
-
     const[pedido,setPedido] = useState([])
-    
     const[nombre,setNombre] = useState('')
     const[total,setTotal] = useState(0)
-
     const [isNavVisible, setIsNavVisible] = useState(true);
+    const[acciones,setAcciones] = useState([]);
+    const[accionActual,setAccionActual] = useState();
 
 
     const obtenerCategorias = async () =>{
@@ -29,27 +27,62 @@ const QuioscoProvider = ({children}) =>{
         setCategorias(data.data);
     }
 
+    const obtenerAcciones = async () =>{
+        setAcciones([
+            {
+                nombre:'Ver Ordenes',
+                id:1,
+                url:'admin'
+            },
+            {
+                nombre:'Ver Menú',
+                id:2,
+                url:'menu'
+            },
+            {
+                nombre:'Agregar al Menú',
+                id:3,
+                url:'nuevo-plato'
+            }
+        ]);
+    }
+
     const handleSetProducto = producto =>{
         setProducto(producto)
     }
 
+    /* useEffect */
     useEffect(() =>{
-        obtenerCategorias()
+        obtenerCategorias();
+        obtenerAcciones();
     },[]);
 
     useEffect(() => {
       setCategoriaActual(categorias[0])
     }, [categorias])
+
+    useEffect(() => {
+        setAccionActual(acciones[0])
+      }, [acciones])
     
     useEffect(() =>{
         const nuevoTotal = pedido.reduce((total,producto) => (producto.precio  * producto.cantidad) + total,0)
         setTotal(nuevoTotal)
     },[pedido])
+
+    /* Enventos */
     const handleClickCategoria = id =>{
         const categoria = categorias.filter( cat => cat.id === id);
        setCategoriaActual(categoria[0]);
        setIsNavVisible(!isNavVisible);
        router.push('/')
+    }
+
+    const handleClickAccion = id =>{
+        const accion = acciones.filter( acc => acc.id === id);
+       setAccionActual(accion[0]);
+       setIsNavVisible(!isNavVisible);
+       router.push(`/${accion[0].url}`)
     }
 
     const handleChangeModal = () =>{
@@ -114,6 +147,10 @@ const QuioscoProvider = ({children}) =>{
        
     }
 
+    const eliminarProducto = (id) =>{
+        console.log(id);
+    }
+
     return (
         <QuioscoContext.Provider
         value={{
@@ -133,7 +170,12 @@ const QuioscoProvider = ({children}) =>{
             colocarOrden,
             total,
             isNavVisible,
-            setIsNavVisible
+            setIsNavVisible,
+            acciones,
+            accionActual,
+            handleClickAccion,
+            setCategoriaActual,
+            eliminarProducto
         }}
         >
             {children}
