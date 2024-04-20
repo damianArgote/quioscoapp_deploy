@@ -31,7 +31,7 @@ const Orden = ({orden}) => {
                         <Image
                             width={400}
                             height={500}
-                            src={`/assets/img/${plato.imagen}.jpg`}
+                            src={`${plato.imagen}`}
                             alt={`Imagen Plato ${plato.nombre}`}
                         />
                     </div>

@@ -6,7 +6,7 @@ const Producto = ({producto}) => {
     const {nombre,imagen,precio} = producto
   return (
     <div className="border p-3">
-      <Image src={`/assets/img/${imagen}.jpg`} 
+      <Image src={`${imagen}`} 
       alt={`Imagen producto ${nombre}`}
       width={400}
       height={500}

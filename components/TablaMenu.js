@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { formatearDinero } from "@/helpers";
 import useQuiosco from "@/hooks/useQuiosco";
 const TablaMenu = ({eliminarProducto}) => {
@@ -29,10 +30,11 @@ const TablaMenu = ({eliminarProducto}) => {
           key={producto.id}
           className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
           <td className="p-4">
-            <img
-              src={producto.imagen}
+            <Image src={`${producto.imagen}`} 
               alt={`Imagen producto ${producto.nombre}`}
-              className="w-16 md:w-32 max-w-full max-h-full rounded-md"
+              width={100}
+              height={150}
+              className="rounded-md"
             />
           </td>
           <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white">
