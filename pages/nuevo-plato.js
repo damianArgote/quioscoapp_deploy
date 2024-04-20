@@ -7,7 +7,7 @@ export default function NuevoPlato() {
   //const { data, error, isLoading } = useSWR('/api/ordenes', fetcher,{refreshInterval: 100})
 
   return (
-    <AdminLayout pagina={"nuevo-plato"}>
+    <AdminLayout pagina="nuevo-plato">
       <h1 className="text-4xl font-black">Panel de Administracion</h1>
       <p className="text-2xl my-10">Agrega un nuevo plato al menú</p>
     <FormularioProducto/>

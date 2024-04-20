@@ -1,22 +1,16 @@
-import useSWR from "swr";
-import axios from "axios";
 import AdminLayout from "@/layout/AdminLayout";
 import TablaMenu from "@/components/TablaMenu";
 import useQuiosco from "@/hooks/useQuiosco";
 export default function Menu() {
   const { categorias,categoriaActual, setCategoriaActual, eliminarProducto } = useQuiosco();
 
-  //const fetcher = () => axios('/api/ordenes').then(datos => datos.data)
-  //const { data, error, isLoading } = useSWR('/api/ordenes', fetcher,{refreshInterval: 100})
-
   const handleChange = (e) =>{
     const categoria = categorias.filter( cat => cat.id === Number(e.target.value));
     setCategoriaActual(categoria[0]);
-    console.log(categoriaActual);
   }
 
   return (
-    <AdminLayout pagina={"menu"}>
+    <AdminLayout pagina="menu">
       <h1 className="text-4xl font-black">Panel de Administracion</h1>
       <p className="text-2xl my-10">Administra tu menú</p>
       <p>No hay menú</p>
@@ -41,7 +35,7 @@ export default function Menu() {
       {/* Grilla del menu */}
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
       {categoriaActual ?
-       <TablaMenu categoriaActual={categoriaActual} eliminarProducto={eliminarProducto} />
+       <TablaMenu eliminarProducto={eliminarProducto} />
        : <p>No hay menú</p>
       }
         

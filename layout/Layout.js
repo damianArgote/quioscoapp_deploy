@@ -21,7 +21,6 @@ const customStyles = {
   Modal.setAppElement('#__next');
 
 export default function Layout({children,pagina}) {
-
     const{modal} = useQuiosco();
     return(
         <>

@@ -1,6 +1,8 @@
 import { formatearDinero } from "@/helpers";
+import useQuiosco from "@/hooks/useQuiosco";
+const TablaMenu = ({eliminarProducto}) => {
 
-const TablaMenu = ({categoriaActual,eliminarProducto}) => {
+  const { categoriaActual} = useQuiosco();
 
   return (
     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -28,7 +30,7 @@ const TablaMenu = ({categoriaActual,eliminarProducto}) => {
           className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
           <td className="p-4">
             <img
-              src={`/assets/img/${producto.imagen}.jpg`}
+              src={producto.imagen}
               alt={`Imagen producto ${producto.nombre}`}
               className="w-16 md:w-32 max-w-full max-h-full rounded-md"
             />

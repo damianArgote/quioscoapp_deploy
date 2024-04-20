@@ -1,4 +1,5 @@
 import {useState,useEffect,createContext} from 'react';
+import {mutate} from 'swr';
 import {useRouter} from 'next/router'
 import {toast} from 'react-toastify'
 import axios from 'axios';
@@ -147,8 +148,30 @@ const QuioscoProvider = ({children}) =>{
        
     }
 
-    const eliminarProducto = (id) =>{
-        console.log(id);
+    const eliminarProducto = async (id) =>{
+        try {
+            const response = await axios.post('/api/deleteProducto',{id});
+            toast.success('Se elimino el producto')
+            return response.data;
+            
+        } catch (error) {
+            console.error('Error al eliminar el producto:', error);
+            toast.error('Error al eliminar el producto')
+        }
+    }
+
+    const nuevoProducto = async (producto) =>{
+        try {
+
+            const response = await axios.post('/api/createProducto',producto);
+            obtenerCategorias();
+            toast.success('Guardado Correctamente')
+            return response.data.producto
+            
+        } catch (error) {
+            console.error('Error al crear el producto:', error);
+            toast.error('Error al crear el producto')
+        }
     }
 
     return (
@@ -175,7 +198,8 @@ const QuioscoProvider = ({children}) =>{
             accionActual,
             handleClickAccion,
             setCategoriaActual,
-            eliminarProducto
+            eliminarProducto,
+            nuevoProducto
         }}
         >
             {children}

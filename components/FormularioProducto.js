@@ -1,21 +1,47 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import useQuiosco from "@/hooks/useQuiosco";
 import Alerta from "./Alerta";
+import axios from 'axios';
 const FormularioProducto = () => {
-  const { categorias } = useQuiosco();
-
+  const { categorias, nuevoProducto } = useQuiosco();
+  const inputFileRef = useRef(null);
   const [nombre, setNombre] = useState("");
   const [precio, setPrecio] = useState("");
   const [categoriaId, setCategoriaId] = useState("");
-  const [imagen, setImagen] = useState(null);
+  const [imagen,setImagen] = useState("");
+  const [imagenFile, setImagenFile] = useState(null);
+  const [imagenId, setImagenId] = useState("");
   const [preview, setPreview] = useState(null);
   const [showPreview, setShowPreview] = useState(false);
-  const [alerta,setAlerta] = useState('');
+  const [alerta,setAlerta] = useState({});
+
+  useEffect(() =>{
+
+    if(imagen && imagenId){
+      //guardo en DB
+      nuevoProducto({nombre,precio,imagen,categoriaId,imagenId});
+      //resetear formulario
+      setNombre('')
+      setPrecio('')
+      setCategoriaId('')
+      setImagen('');
+      setImagenFile(null)
+      setShowPreview(false)
+      setPreview(null)
+      setAlerta({})
+      setImagenId("");
+      
+      if (inputFileRef.current) {
+        inputFileRef.current.value = '';
+      }
+    }
+
+  },[imagen,imagenId])
 
   const onChangeImagen = (e) => {
 
     if (e.target.files[0]) {
-      setImagen(e.target.files[0]);
+      setImagenFile(e.target.files[0]);
       const reader = new FileReader();
       reader.addEventListener("load", () => {
         setPreview(reader.result);
@@ -27,36 +53,40 @@ const FormularioProducto = () => {
     }
   };
 
+  const handleUploadImage = async () =>{
+    const formData = new FormData();
+    formData.append('file',imagenFile);
+    try {
+      setAlerta({msg:'Procesando...',error:false})
+      const {data} = await axios.post('/api/upload',formData);
+      console.log(data);
+      setImagen(data.imageUrl);
+      setImagenId(data.imageUrlPublicId);
+        
+    } catch (error) {
+      console.log(error);
+      setAlerta({msg:'Hubo un error',error:true})
+    }
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    console.log(nombre);
-    console.log(precio);
-    console.log(categoriaId);
-    console.log(imagen);
     //validar
-    if([nombre,precio,categoriaId].includes('') || !imagen){
+    if([nombre,precio,categoriaId].includes('') && !imagenFile){
         //alerta
-        setAlerta('Todos los campos son obligatorios')
+        setAlerta({msg:'Todos los campos son obligatorios',error:true})
         return;
     }
-    setAlerta('')
-    //guardar db
-
-    //resetear formulario
-    setNombre('')
-    setPrecio('')
-    setCategoriaId('')
-    setImagen(null)
-    setShowPreview(false)
-    setPreview(null)
+    setAlerta({})
+    //subo imagen a claudinary
+    handleUploadImage();
   };
 
-  const alert = alerta;
+  const mensaje = alerta.msg;
   return (
     <form className="w-full p-5 shadow-md" onSubmit={handleSubmit}>
         {
-            alert && <Alerta alerta={alerta}/>
+            mensaje && <Alerta alerta={alerta}/>
         }
       <div className="flex flex-wrap -mx-3 mb-6">
         <div className="w-full md:w-3/6 px-3 mb-6">
@@ -128,6 +158,7 @@ const FormularioProducto = () => {
                     file:bg-gray-900 file:text-white
                     hover:file:bg-gray-600"
                 onChange={(e) => onChangeImagen(e)}
+                ref={inputFileRef}
               />
             </label>
           </div>
