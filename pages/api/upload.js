@@ -3,7 +3,8 @@ import fs from "fs";
 import { v2 as cloudinary } from "cloudinary";
 // Configuración de multer
 // Configuración de Multer
-const upload = multer({ dest: "./public/uploads/" });
+//const upload = multer({ dest: "./public/uploads/" });
+const upload = multer({ dest: '/tmp' });
 
 cloudinary.config({
   cloud_name: "dpsmuwsae",
