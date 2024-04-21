@@ -16,6 +16,7 @@ const SidebarAdmin = () => {
         height={100}
         src="/assets/img/logo_trial.png"
         alt="imagen logotipo"
+        className="w-full"
         onClick={toggleNavVisibility}
       />
 
