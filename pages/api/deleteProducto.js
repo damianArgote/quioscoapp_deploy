@@ -1,10 +1,11 @@
 import cloudinary from "cloudinary";
 import { PrismaClient } from "@prisma/client";
+import { env } from "process";
 
 cloudinary.config({
-  cloud_name: "dpsmuwsae",
-  api_key: "911168556997222",
-  api_secret: "p1RO5ghUpobxbSDjPqW6opCQx1c",
+  cloud_name: env.CLOUD_NAME,
+  api_key: env.API_KEY,
+  api_secret: env.API_SECRET
 });
 
 export default async function handler(req, res) {
@@ -32,7 +33,7 @@ export default async function handler(req, res) {
       if (!producto) {
         return res.status(404).json({ error: "El producto no existe." });
       }
-      console.log(producto);
+      
       if(!producto.imagenId || producto.imagenId !== ""){
           // Eliminar la imagen de Cloudinary
           await cloudinary.uploader.destroy(producto.imagenId);

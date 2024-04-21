@@ -1,15 +1,16 @@
 import multer from "multer";
 import fs from "fs";
 import { v2 as cloudinary } from "cloudinary";
+import { env } from "process";
 // Configuración de multer
 // Configuración de Multer
 //const upload = multer({ dest: "./public/uploads/" });
 const upload = multer({ dest: '/tmp' });
 
 cloudinary.config({
-  cloud_name: "dpsmuwsae",
-  api_key: "911168556997222",
-  api_secret: "p1RO5ghUpobxbSDjPqW6opCQx1c",
+  cloud_name: env.CLOUD_NAME,
+  api_key: env.API_KEY,
+  api_secret: env.API_SECRET
 });
 
 export const config = {

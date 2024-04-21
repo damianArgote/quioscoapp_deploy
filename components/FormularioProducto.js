@@ -59,7 +59,6 @@ const FormularioProducto = () => {
     try {
       setAlerta({msg:'Procesando...',error:false})
       const {data} = await axios.post('/api/upload',formData);
-      console.log(data);
       setImagen(data.imageUrl);
       setImagenId(data.imageUrlPublicId);
         
