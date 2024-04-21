@@ -21,6 +21,7 @@ model Categoria {
   id Int @id @default(autoincrement())
   nombre String
   icono String
+  imagenId String?
   productos Producto[]
 }
 

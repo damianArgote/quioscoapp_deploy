@@ -45,6 +45,11 @@ const QuioscoProvider = ({children}) =>{
                 nombre:'Agregar al Menú',
                 id:3,
                 url:'nuevo-plato'
+            },
+            {
+                nombre:'Agregar categoria',
+                id:4,
+                url:'nueva-categoria'
             }
         ]);
     }
@@ -177,6 +182,20 @@ const QuioscoProvider = ({children}) =>{
         }
     }
 
+    const nuevaCategoria = async (categoria) =>{
+        try {
+
+            const response = await axios.post('/api/categorias',categoria);
+            obtenerCategorias();
+            toast.success('Guardado Correctamente')
+            return response.data.categoria
+            
+        } catch (error) {
+            console.error('Error al crear la categoria:', error);
+            toast.error('Error al crear la categoria')
+        }
+    }
+
     return (
         <QuioscoContext.Provider
         value={{
@@ -203,7 +222,9 @@ const QuioscoProvider = ({children}) =>{
             setCategoriaActual,
             eliminarProducto,
             nuevoProducto,
-            alerta
+            alerta,
+            setAlerta,
+            nuevaCategoria
         }}
         >
             {children}

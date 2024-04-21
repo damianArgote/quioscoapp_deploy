@@ -17,7 +17,8 @@ const Sidebar = () => {
       <Image 
       width={300} 
       height={100} 
-      src="/assets/img/logo.svg" 
+      src="/assets/img/logo_trial.png"
+      className="w-full"
       alt="imagen logo"
       onClick={toggleNavVisibility}
       />

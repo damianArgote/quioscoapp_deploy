@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+  <style>
+    .circle { fill: none; stroke: #FEC72D; stroke-width: 2px; }
+    .logo-text { font-family: Arial, sans-serif; font-size: 18px; text-anchor: middle; fill: #FEC72D; }
+    .slogan-text { font-family: Arial, sans-serif; font-size: 10px; text-anchor: middle; fill: #FEC72D; }
+  </style>
+  <circle cx="120" cy="120" r="110" class="circle" />
+  <text x="120" y="110" class="logo-text">Gestión de Pedidos</text>
+  <text x="120" y="130" class="slogan-text">Administra tus pedidos</text>
+</svg>
