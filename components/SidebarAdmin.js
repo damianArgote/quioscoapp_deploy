@@ -12,11 +12,12 @@ const SidebarAdmin = () => {
   return (
     <>
       <Image
-        width={300}
-        height={100}
-        src="/assets/img/logo_trial.png"
+        width={200}
+        height={150}
+        src="/assets/img/gestion-pedidos.svg"
         alt="imagen logotipo"
-        className="w-full"
+        layout="responsive"
+        className="w-full h-full"
         onClick={toggleNavVisibility}
       />
 

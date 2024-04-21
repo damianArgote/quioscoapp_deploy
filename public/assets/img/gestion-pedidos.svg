@@ -1,10 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
-  <style>
-    .circle { fill: none; stroke: #FEC72D; stroke-width: 2px; }
-    .logo-text { font-family: Arial, sans-serif; font-size: 18px; text-anchor: middle; fill: #FEC72D; }
-    .slogan-text { font-family: Arial, sans-serif; font-size: 10px; text-anchor: middle; fill: #FEC72D; }
-  </style>
-  <circle cx="120" cy="120" r="110" class="circle" />
-  <text x="120" y="110" class="logo-text">Gestión de Pedidos</text>
-  <text x="120" y="130" class="slogan-text">Administra tus pedidos</text>
+<svg width="100%" height="100%" viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+  <!-- Icono de paquete -->
+  <g transform="translate(80,20)" fill-rule="evenodd" clip-rule="evenodd" fill="#FFBF00">
+    <path d="M0,10 l20-10 v20 l-20,10 V10z M20,30 l-20,10 V20 l20-10 V30z M5,5 l20-10 l20,10 l-20,10 L5,5z M20,15 v20 l20-10 V5 L20,15z"/>
+  </g>
+  <!-- Nombre y eslogan -->
+  <text x="50%" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#FFBF00">Gestión de Pedidos</text>
+  <text x="50%" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#FFBF00">Administra tus pedidos</text>
 </svg>

@@ -14,13 +14,14 @@ const Sidebar = () => {
 
   return (
     <>
-      <Image 
-      width={300} 
-      height={100} 
-      src="/assets/img/logo_trial.png"
-      className="w-full"
-      alt="imagen logo"
-      onClick={toggleNavVisibility}
+      <Image
+        width={200}
+        height={150}
+        src="/assets/img/gestion-pedidos.svg"
+        alt="imagen logotipo"
+        layout="responsive"
+        className="w-full h-full"
+        onClick={toggleNavVisibility}
       />
     
       <nav className={`mt-10 md:w-auto ${isNavVisible ? '' : 'hidden'} md:block transition-all duration-300 ease-in-out`}>
