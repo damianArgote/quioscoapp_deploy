@@ -59,6 +59,8 @@ export default async function handler(req, res) {
             imageUrlPublicId: result.public_id
           });
       });
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
