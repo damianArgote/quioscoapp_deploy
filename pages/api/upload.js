@@ -1,7 +1,6 @@
 import multer from "multer";
 import fs from "fs";
 import { v2 as cloudinary } from "cloudinary";
-import { NextApiRequest, NextApiResponse } from "next";
 // Configuración de multer
 // Configuración de Multer
 const upload = multer({ dest: "./public/uploads/" });
@@ -17,12 +16,6 @@ export const config = {
     bodyParser: false, // Desactivamos el bodyParser de Next.js para usar multer
   },
 };
-
-/**
- * Maneja la solicitud de carga de archivos.
- * @param {NextApiRequest} req - El objeto de solicitud.
- * @param {NextApiResponse} res - El objeto de respuesta.
- */
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
