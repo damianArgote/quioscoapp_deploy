@@ -21,6 +21,7 @@ const QuioscoProvider = ({children}) =>{
     const [isNavVisible, setIsNavVisible] = useState(true);
     const[acciones,setAcciones] = useState([]);
     const[accionActual,setAccionActual] = useState();
+    const [alerta, setAlerta] = useState({});
 
 
     const obtenerCategorias = async () =>{
@@ -149,9 +150,11 @@ const QuioscoProvider = ({children}) =>{
     }
 
     const eliminarProducto = async (id) =>{
+        setAlerta({ msg: "Procesando...", error: false });
         try {
             const response = await axios.post('/api/deleteProducto',{id});
             toast.success('Se elimino el producto')
+            setAlerta({});
             return response.data;
             
         } catch (error) {
@@ -199,7 +202,8 @@ const QuioscoProvider = ({children}) =>{
             handleClickAccion,
             setCategoriaActual,
             eliminarProducto,
-            nuevoProducto
+            nuevoProducto,
+            alerta
         }}
         >
             {children}
