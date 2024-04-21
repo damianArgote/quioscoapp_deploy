@@ -76,7 +76,7 @@ const ModalProducto = () => {
                 <button
                 type='button'
                 onClick={() =>{
-                    if(cantidad >= 5) return;
+                    if(cantidad >= 100) return;
                     setCantidad(cantidad +1)
                 }}
                 >
