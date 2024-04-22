@@ -7,8 +7,8 @@ export default function AdminLayout({ children, pagina }) {
   return (
     <>
       <Head>
-        <title>Café - {pagina}</title>
-        <meta name="description" content="Quiosco Cafetería" />
+        <title>GP - {pagina}</title>
+        <meta name="description" content="Gestion de pedidos" />
       </Head>
 
       <div className="md:flex">
