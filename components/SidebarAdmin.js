@@ -16,7 +16,7 @@ const SidebarAdmin = () => {
         height={150}
         src="/assets/img/gestion-pedidos.svg"
         alt="imagen logotipo"
-        layout="responsive"
+        fill
         className="w-full h-full"
         onClick={toggleNavVisibility}
       />
