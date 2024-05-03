@@ -19,7 +19,7 @@ const Sidebar = () => {
         height={150}
         src="/assets/img/gestion-pedidos.svg"
         alt="imagen logotipo"
-        fill
+        layout="responsive"
         className="w-full h-full"
         onClick={toggleNavVisibility}
       />
